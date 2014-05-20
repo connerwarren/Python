@@ -180,28 +180,28 @@ def distance(origin, destination):
     """
     lat1, lon1 = origin
     lat2, lon2 = destination
+    print lat1, lon1
+    print lat2, lon2
     if lat1>1000:
         (lat1,lon1)=dm2dd(lat1,lon1)
         (lat2,lon2)=dm2dd(lat2,lon2)
         print 'converted to from ddmm to dd.ddd'
     radius = 6371 # km
-    
-
-    dlat = math.radians(lat2-lat1)
-    dlon = math.radians(lon2-lon1)
-    a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(lat1)) \
-        * math.cos(math.radians(lat2)) * math.sin(dlon/2) * math.sin(dlon/2)
-    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+    dlat = np.radians(lat2-lat1)
+    dlon = np.radians(lon2-lon1)
+    a = np.sin(dlat/2) * np.sin(dlat/2) + np.cos(np.radians(lat1)) \
+        * np.cos(np.radians(lat2)) * np.sin(dlon/2) * np.sin(dlon/2)
+    c = 2 * np.atan2(np.sqrt(a), np.sqrt(1-a))
     d = radius * c
     
     def calcBearing(lat1, lon1, lat2, lon2):
        dLon = lon2 - lon1
-       y = math.sin(dLon) * math.cos(lat2)
-       x = math.cos(lat1) * math.sin(lat2) \
-           - math.sin(lat1) * math.cos(lat2) * math.cos(dLon)
-       return math.atan2(y, x)
+       y = np.sin(dLon) * np.cos(lat2)
+       x = np.cos(lat1) * np.sin(lat2) \
+           - np.sin(lat1) * np.cos(lat2) * np.cos(dLon)
+       return np.atan2(y, x)
        
-    bear= math.degrees(calcBearing(lat1, lon1, lat2, lon2))  
+    bear= np.degrees(calcBearing(lat1, lon1, lat2, lon2))  
     return d,bear
     
 def dist(lat1, lon1, lat2, lon2):
