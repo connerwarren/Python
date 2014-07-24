@@ -32,7 +32,7 @@ from track_functions import *
 drifter_ids = ['115410701','118410701']
 
 depth = -1. # depth of drogue in meters
-days = .25  # length of time wanted in track
+days = .5  # length of time wanted in track
 starttime = datetime(2011,5,12,13,0,0,0,pytz.UTC)
 
 for ID in drifter_ids:
